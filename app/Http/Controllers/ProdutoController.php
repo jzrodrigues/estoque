@@ -24,4 +24,8 @@ class ProdutoController extends Controller{
 
 	}
 
+	public function novo(){
+		return view('produto.formulario');
+	}
+
 }

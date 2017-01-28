@@ -19,6 +19,9 @@
 					<li>
 						<a	href="/produtos">Listagem</a>
 					</li>
+						<li>
+							<a	href="/produtos/novo">Novo</a>
+						</li>
 				</ul>
 			</div>
 		</nav>
