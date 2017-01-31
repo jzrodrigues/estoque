@@ -33,6 +33,12 @@ class ProdutoController extends Controller{
 		return	redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
 	}
 
+	public function remove($id){
+		$produto = Produto::find($id);
+		$produto->delete();
+		return redirect()->action('ProdutoController@lista');
+	}
+
 	public function	listaJson(){
 
 		return	response()->json(Produto::all());
