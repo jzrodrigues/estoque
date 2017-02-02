@@ -2,6 +2,7 @@
 
 use	Illuminate\Support\Facades\DB;
 use Request;
+use Validator;
 use estoque\Produto;
 
 class ProdutoController extends Controller{
@@ -26,12 +27,24 @@ class ProdutoController extends Controller{
 		return view('produto.formulario');
 	}
 
+
 	public function adiciona(){
+		
+		$validator	=	Validator::make(
+				['nome'	=>	Request::input('nome')],
+				['nome'	=>	'required|min:5']
+		);
+		
+		if	($validator->fails())
+		{
+			return	redirect()->action('ProdutoController@novo');
+		}
 		
 		Produto::create(Request::all());
 		
-		return	redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
+		return	redirect()->action('ProdutoController@lista');
 	}
+
 
 	public function remove($id){
 		$produto = Produto::find($id);
